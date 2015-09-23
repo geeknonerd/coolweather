@@ -11,6 +11,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -80,12 +81,14 @@ public class WeatherActivity extends Activity implements OnClickListener{
 	
 
 	private void queryWeatherCode(String countycode){
+		Log.e("TAG", "queryWeatherCode");
 		String address = "http://www.weather.com.cn/data/list3/city"+countycode+".xml";
 		queryFromServer(address,"countyCode");
 	}
 
 	private void queryWeatherInfo(String weatherCode) {
-		String address = "http://www.weather.com.cn/data/cityinfo"+weatherCode+".html";
+		Log.e("TAG", "queryWeatherInfo");
+		String address = "http://www.weather.com.cn/data/cityinfo/"+weatherCode+".html";
 		queryFromServer(address, "weatherCode");
 	}
 	
@@ -124,6 +127,7 @@ public class WeatherActivity extends Activity implements OnClickListener{
 	}
 	
 	private void showWeather(){
+		Log.e("TAG", "showWeather");
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 		cityNameText.setText(prefs.getString("city_name", ""));
 		temp1Text.setText(prefs.getString("temp1", ""));
